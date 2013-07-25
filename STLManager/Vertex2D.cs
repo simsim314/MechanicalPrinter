@@ -5,7 +5,9 @@ using System.Text;
 
 namespace STLManager
 {
-    class Vertex2D
+    public  class Vertex2D
     {
+        public decimal X;
+        public decimal Y;
     }
 }

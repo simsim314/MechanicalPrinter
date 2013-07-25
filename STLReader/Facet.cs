@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace QuantumConcepts.Formats.StereoLithography
+namespace STLReader
 {
     public class Facet : IEquatable<Facet>
     {

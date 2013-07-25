@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace QuantumConcepts.Formats.StereoLithography
+namespace STLReader
 {
     public class Normal : Vertex
     {
