@@ -34,7 +34,10 @@ namespace STLManager
         private List<LineSegment> IntersectWithZ(decimal z)
         {
             List<LineSegment> result = new List<LineSegment>();
-            AllFacetsIntersectZ(z).ForEach(f => result.Add(IntersectWithZ(f, z)));
+            
+            var zfacets = AllFacetsIntersectZ(z);
+            zfacets.ForEach(f => result.Add(IntersectWithZ(f, z)));
+
             return result;
         }
 
@@ -43,7 +46,7 @@ namespace STLManager
             int numOnZ = f.Vertices.Count(v => v.Z == z);
 
             if (numOnZ > 1)
-                throw new Exception("Too many vertices on Z, add epsilon to z");
+                throw new AddEpsilonException("Too many vertices on Z, add epsilon to z");
 
             List<Vertex2D> vertices = new List<Vertex2D>();
 
@@ -67,7 +70,7 @@ namespace STLManager
             }
 
             if(vertices.Count != 2 && vertices.Count != 0)
-                throw new Exception("Too many vertices intersect Z, add epsilon to z");
+                throw new AddEpsilonException("Too many vertices intersect Z, add epsilon to z");
 
             if (vertices.Count == 0)
                 return null;

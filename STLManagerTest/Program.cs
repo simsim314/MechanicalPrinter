@@ -9,6 +9,7 @@ namespace STLManagerTest
     {
         static void Main(string[] args)
         {
+            Console.ReadKey();
         }
     }
 }

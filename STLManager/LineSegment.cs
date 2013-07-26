@@ -24,5 +24,40 @@ namespace STLManager
 
             }
         }
+
+        public decimal LeftX
+        {
+            get
+            {
+                return _left.X;
+            }
+        }
+
+        public decimal LeftY
+        {
+            get
+            {
+                return _left.Y;
+            }
+        }
+
+        public decimal RightX
+        {
+            get
+            {
+                return _right.X;
+            }
+        }
+
+        public decimal RightY
+        {
+            get
+            {
+                return _right.Y;
+            }
+        }
+
+
+       
     }
 }

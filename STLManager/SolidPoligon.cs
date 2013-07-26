@@ -5,8 +5,7 @@ using System.Text;
 
 namespace STLManager
 {
-    public class AddEpsilonException : Exception
+    public class SolidPoligon
     {
-        public AddEpsilonException(string ex) : base(ex) {}
     }
 }

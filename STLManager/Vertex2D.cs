@@ -9,5 +9,11 @@ namespace STLManager
     {
         public decimal X;
         public decimal Y;
+        public Vertex2D() { }
+        public Vertex2D(decimal x1, decimal y1)
+        {
+            X = x1;
+            Y = y1;
+        }
     }
 }

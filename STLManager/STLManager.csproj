@@ -40,9 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEpsilonException.cs" />
+    <Compile Include="Consts.cs" />
     <Compile Include="LineSegment.cs" />
+    <Compile Include="Polygon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SegmentEdge.cs" />
+    <Compile Include="SolidPoligon.cs" />
     <Compile Include="STLDocumentManager.cs" />
     <Compile Include="Vertex2D.cs" />
   </ItemGroup>
