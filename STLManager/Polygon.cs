@@ -5,42 +5,42 @@ using System.Text;
 
 namespace STLManager
 {
-   public  class Polygon
+    public class Polygon
     {
-      
-       List<SegmentEdge> vertices;
 
-       private Polygon()
-       { }
+        List<SegmentEdge> vertices;
 
-       public static List<Polygon> LeftPolygonFromSegments(List<LineSegment> segments)
-       {
-           List<SegmentEdge> edges = CreateListEdge(segments);
-           
-           List<Polygon> polys = new List<Polygon>();
+        private Polygon()
+        { }
 
-           while (true)
-           {
-               Polygon result = new Polygon();
-               result.vertices = ExtractPoly(edges);
+        public static List<Polygon> ListPolygonaFromSegments(List<LineSegment> segments)
+        {
+            List<SegmentEdge> edges = CreateListEdge(segments);
 
-               if (result.vertices.Count == 0)
-                   break;
+            List<Polygon> polys = new List<Polygon>();
 
-               polys.Add(result);
+            while (true)
+            {
+                Polygon result = new Polygon();
+                result.vertices = ExtractPoly(edges);
 
-           }
+                if (result.vertices.Count == 0)
+                    break;
 
-           return polys;
-       }
+                polys.Add(result);
 
-       private static List<SegmentEdge> ExtractPoly(List<SegmentEdge> edges)
+            }
+
+            return polys;
+        }
+
+        private static List<SegmentEdge> ExtractPoly(List<SegmentEdge> edges)
        {
            List<SegmentEdge>  vertices = new List<SegmentEdge>();
 
            if (edges.Count == 0)
                return vertices;
-
+             
            SegmentEdge curEdge = edges[0];
 
            while (true)
@@ -50,25 +50,38 @@ namespace STLManager
 
                var otherSide = curEdge.OtherSide;
 
-               var nextEdges = edges.FindAll(seg => seg.Equals(curEdge) && seg.Idx != curEdge.Idx);
+               var nextEdges = edges.FindAll(seg => seg.EqualsEdge(otherSide) && seg.Idx != otherSide.Idx);
+
 
                if (nextEdges.Count == 0)
+               {
+                   if (otherSide.EqualsEdge(vertices[0]))
+                   {
+                       edges.FindAll(seg => seg.EqualsEdge(otherSide) && seg.Idx == otherSide.Idx).ForEach(seg => edges.Remove(seg));
+                       break;
+                   }
+                   
+                   throw new AddEpsilonException("The loop is not closed");
+
                    break;
+               }
                else if (nextEdges.Count != 1)
                    throw new AddEpsilonException("Few or none edges in the loop, please increase z by epsilon");
                else
                    curEdge = nextEdges[0];
+
+               edges.FindAll(seg => seg.EqualsEdge(otherSide) && seg.Idx == otherSide.Idx).ForEach(seg => edges.Remove(seg));
            }
 
            return vertices;
        }
 
-       private static List<SegmentEdge> CreateListEdge(List<LineSegment> segments)
-       {
-           List<SegmentEdge> edges = new List<SegmentEdge>();
-           segments.ForEachWithIndex((item, idx) => edges.AddRange(SegmentEdge.EdgesFromsegment(item, idx)));
-           edges.Sort();
-           return edges;
-       }
+        private static List<SegmentEdge> CreateListEdge(List<LineSegment> segments)
+        {
+            List<SegmentEdge> edges = new List<SegmentEdge>();
+            segments.ForEachWithIndex((item, idx) => edges.AddRange(SegmentEdge.EdgesFromsegment(item, idx)));
+            edges.Sort();
+            return edges;
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace STLManager
             return _stl.Facets.FindAll(f => MaxZ(f) >= z).FindAll(f => MinZ(f) <= z);
         }
 
-        private List<LineSegment> IntersectWithZ(decimal z)
+        public List<LineSegment> IntersectWithZ(decimal z)
         {
             List<LineSegment> result = new List<LineSegment>();
             

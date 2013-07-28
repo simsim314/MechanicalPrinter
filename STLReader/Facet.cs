@@ -18,12 +18,13 @@ namespace STLReader
             this.Vertices = new List<Vertex>();
         }
 
-        public Facet(Normal normal, IEnumerable<Vertex> vertices, int attributeByteCount)
+
+        public Facet(List<Vertex> vertices)
             : this()
         {
-            this.Normal = normal;
-            this.Vertices = vertices.ToList();
-            this.AttributeByteCount = attributeByteCount;
+            //this.Normal = normal;
+            this.Vertices = vertices;
+            //this.AttributeByteCount = attributeByteCount;
         }
 
         public static Facet Read(StreamReader reader)

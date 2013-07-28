@@ -11,7 +11,7 @@ namespace STLManagerTest
     class TestMatrix
     {
         [Test]
-        public void TransferFunds()
+        public void MatrixSimple()
         {
             // solving system of linear equations ... A * x = b
             Matrix A = Matrix.Parse("1 0\r\n1 1"); // \r\n is newline in textbox
@@ -20,7 +20,6 @@ namespace STLManagerTest
 
             Assert.AreEqual(-1, x[0,0], "failed");
             Assert.AreEqual(-2, x[1,0], "failed");
-
         }
     }
 }

@@ -43,6 +43,16 @@ namespace MatrixOperator
             return m;
         }
 
+        public void SetCol(List<decimal> v, int k)
+        {
+            for (int i = 0; i < rows; i++) mat[i, k] = (double)v[i];
+        }
+
+        public void SetCol(List<double> v, int k)
+        {
+            for (int i = 0; i < rows; i++) mat[i, k] = v[i];
+        }
+       
         public void SetCol(Matrix v, int k)
         {
             for (int i = 0; i < rows; i++) mat[i, k] = v[i, 0];

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace STLManager
 {
-    internal class SegmentEdge : IComparer<SegmentEdge>, IEqualityComparer<SegmentEdge>
+    internal class SegmentEdge : IComparable<SegmentEdge>, IEqualityComparer<SegmentEdge>
     {
         private LineSegment _seg;
         private bool _isLeft;
@@ -50,13 +50,9 @@ namespace STLManager
             }
         }
 
-        public int Compare(SegmentEdge x, SegmentEdge y)
+        public bool EqualsEdge(SegmentEdge other)
         {
-            var xcomp = x.X.CompareTo(y.X);
-            if (xcomp != 0)
-                return xcomp;
-            else
-                return x.Y.CompareTo(y.Y);
+            return (Math.Abs(this.X - other.X) < Consts.epsilon) && (Math.Abs(this.Y - other.Y) < Consts.epsilon);
         }
 
         public bool Equals(SegmentEdge x, SegmentEdge y)
@@ -75,6 +71,15 @@ namespace STLManager
             {
                 return new SegmentEdge(_seg, !_isLeft, Idx);
             }
+        }
+
+        public int CompareTo(SegmentEdge other)
+        {
+            var thiscomp = this.X.CompareTo(other.X);
+            if (thiscomp != 0)
+                return thiscomp;
+            else
+                return this.Y.CompareTo(other.Y);
         }
     }
 }
