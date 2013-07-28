@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PolygonSolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TylorEstimator.cs" />
     <Compile Include="TylorGenerator.cs" />
@@ -49,6 +50,14 @@
     <ProjectReference Include="..\MatrixOperator\MatrixOperator.csproj">
       <Project>{2FDBBBC4-C205-4BA8-9FF1-C829FA58A318}</Project>
       <Name>MatrixOperator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STLManager\STLManager.csproj">
+      <Project>{A53B76B7-3A22-4839-B270-70E934496813}</Project>
+      <Name>STLManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STLReader\STLReader.csproj">
+      <Project>{E9293A1B-0E6C-4713-AC4B-52992C1F1742}</Project>
+      <Name>STLReader</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

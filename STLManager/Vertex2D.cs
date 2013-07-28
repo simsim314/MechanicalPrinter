@@ -15,5 +15,10 @@ namespace STLManager
             X = x1;
             Y = y1;
         }
+
+        public decimal DistTo(Vertex2D other)
+        {
+            return (decimal)Math.Sqrt((double)((X - other.X) * (X - other.X) + (Y - other.Y) * (Y - other.Y)));
+        }
     }
 }

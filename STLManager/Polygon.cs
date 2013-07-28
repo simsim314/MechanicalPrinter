@@ -8,7 +8,7 @@ namespace STLManager
     public class Polygon
     {
 
-        List<SegmentEdge> vertices;
+        List<SegmentEdge> _vertices;
 
         private Polygon()
         { }
@@ -22,9 +22,9 @@ namespace STLManager
             while (true)
             {
                 Polygon result = new Polygon();
-                result.vertices = ExtractPoly(edges);
+                result._vertices = ExtractPoly(edges);
 
-                if (result.vertices.Count == 0)
+                if (result._vertices.Count == 0)
                     break;
 
                 polys.Add(result);
@@ -82,6 +82,19 @@ namespace STLManager
             segments.ForEachWithIndex((item, idx) => edges.AddRange(SegmentEdge.EdgesFromsegment(item, idx)));
             edges.Sort();
             return edges;
+        }
+
+        public Vertex2D GetVert(int idx)
+        {
+            return new Vertex2D(_vertices[idx].X, _vertices[idx].Y);
+        }
+
+        public int NumVerts
+        {
+            get
+            {
+                return _vertices.Count;
+            }
         }
     }
 }

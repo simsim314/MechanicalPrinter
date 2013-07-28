@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MatrixOperator;
+using STLManager;
 
 namespace TylorManager
 {
@@ -40,9 +41,9 @@ namespace TylorManager
             return new TylorEstimator(result);
         }
 
-        public TylorEstimator SolveWitErrorLessThen(decimal epsilon)
+        public TylorEstimator SolveWitErrorLessThen(decimal epsilon, int maxCoefs)
         {
-            for(int i = 1; i < 100; i++)
+            for(int i = 1; i <= maxCoefs; i++)
             {
                 var curSol = SolveForN(i);
 
